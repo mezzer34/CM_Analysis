@@ -1,18 +1,18 @@
 from dataclasses import dataclass
-
+from enum import Enum
 
 @dataclass
 class VibrationAxis:
     AxisName: str
 
-    RawData: list[float()]
+    RawData: list[float]
 
     Min: float
     Max: float
     Mean: float
     StandDev: float
 
-    def __init__(self, _AxisName):
+    def __init__(self, _AxisName: str):
         self.AxisName = _AxisName
         self.RawData = []
         
@@ -25,7 +25,7 @@ class VibrationAxis:
 
 @dataclass
 class VibrationData:
-    Time: list[float()]
+    Time: list[float]
     XAxis: VibrationAxis
     YAxis: VibrationAxis
     ZAxis: VibrationAxis
@@ -43,12 +43,14 @@ class VibrationData:
 class Model:
     Name: str
     OriginDate: str
-    VibrationData: VibrationData
+    VibrationLog: VibrationData
+    ModelLoaded: bool
 
     def __init__(self):
-        self.Name = "Default"
+        self.Name = "NOT SET"
         self.OriginDate = "NOT_SET"
-        self.VibrationData = VibrationData()
+        self.VibrationLog = VibrationData()
+        self.ModelLoaded = False
 
         
 
@@ -80,15 +82,40 @@ class AxisDifference:
 
 @dataclass
 class ModelDifference:
+    MasterName: str
+    OtherName: str
+    
     XAxis: AxisDifference
     YAxis: AxisDifference
     ZAxis: AxisDifference
     
 
     def __init__(self):
+        self.MasterName = "NOT SET"
+        self.OtherName = "NOT SET"
+        
         self.XAxis = AxisDifference()
         self.YAxis = AxisDifference()
         self.ZAxis = AxisDifference()
 
 
 
+
+
+
+class PlotData(Enum):
+    Master_Single_X = 1
+    Master_Single_Y = 2
+    Master_Single_Z = 3
+    Master_All = 4
+    
+    MasterOther_Compare_X = 11
+    MasterOther_Compare_Y = 12
+    MasterOther_Compare_Z = 13
+    MasterOther_Compare_All = 14
+    
+
+class ChartType(Enum):
+    Lineplot = 1
+    Scatterplot = 2
+    

@@ -1,13 +1,6 @@
-import os
-from dataclasses import dataclass
-
 import sys
 sys.setrecursionlimit(2000)
 
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-import seaborn as sns
 
 import file_func as file_func
 import functions as f
@@ -76,31 +69,59 @@ def doOperatingMode_LoadExistingModel():
 
 
 
-def doOperatingMode_CheckAgainstModel(_ComparrisonDataset):    
-    l_Model = processing.doLoadFromCSVAndConvertToModel(_DirectoryPath="./data/")
+def doOperatingMode_CheckAgainstModel(_ComparrisonDataset: st.Model):    
+    l_Models = processing.doLoadFromCSVAndConvertToModel(_DirectoryPath="./data/",
+                                                         _MaxNumberOfFilesToSelect = 0)
     
     
     
     # Compare the user loaded models with the master model
-    l_DifferentialModels = []
-    for l_ModelToCheck in l_Model:
+    l_DifferentialModels = list[st.ModelDifference]()
+    l_ModelToCheck = st.Model()
+    
+    for l_ModelToCheck in l_Models:
         l_DifferentialModels.append(processing.doCreateComparrisonBetweenTwoModels(_MasterModel=_ComparrisonDataset,
                                                                                     _OtherModel= l_ModelToCheck)) 
 
 
     #print the results
-    for l_Result in l_DifferentialModels:
-        print(l_Result)
+#   for i in range(len(l_DifferentialModels)):
+#        f.doClearConsole()
+#        doPrintModelDifferences(_ModelDifferences=l_DifferentialModels[i])
         
+#        grapth.doPlotModel(_MasterModel=_ComparrisonDataset,
+#                           _OtherModel=l_DifferentialModels[i],
+#                           _ChartType=st.ChartType.Lineplot,
+#                           _PlotData=st.PlotData.MasterOther_Compare_X)
+ 
+    #print comparison between two models
+    for i in range(len(l_Models)):
+        f.doClearConsole()
+        grapth.doPlotModel(_MasterModel=_ComparrisonDataset,
+                           _OtherModel=l_Models[i],
+                           _ChartType=st.ChartType.Lineplot,
+                           _PlotData=st.PlotData.MasterOther_Compare_All)
+        
+                
+        
+        
+        #grapth.doPlotModelDifferences(_ModelDifferences=l_DifferentialModels[i])
+        
+        #Pause here and wait for user acknowledgement
+        input("Press enter to continue")
+        
+        
+                
 
-    x = input("Press enter to continue")
 
 
 
 def doOperatingMode_LearnDataset():   
-    l_NewModel = processing.doLoadFromCSVAndConvertToModel(_DirectoryPath="./data/")
+    l_NewModelList = processing.doLoadFromCSVAndConvertToModel(_DirectoryPath="./data/",
+                                                               _MaxNumberOfFilesToSelect = 1)
     
-    l_NewModel = l_NewModel[0]
+    l_NewModel = st.Model()
+    l_NewModel = l_NewModelList[0]
     
     #get new dataset name
     l_NewName = f.getUserInput("Enter new dataset name: ", _AllowBlank=False)
@@ -123,42 +144,134 @@ def doOperatingMode_LearnDataset():
 
 
 
+def doPrintCurrentStatus(_CurrentModel: st.Model):
+    
+    
+    #if there is data in the current model display it, otherwise display warning    
+    if ( (len(_CurrentModel.Name) > 0) and ( _CurrentModel.ModelLoaded ) ):        
+        doPrintModelToScreen(_Model=_CurrentModel)
+                
+    else:
+        print("No model loaded")
+        
+    
+    
+    print("Waiting for user input")
+    print("\n")
+    
+
+def doPrintModelToScreen(_Model: st.Model):
+    print("Model Name: " + _Model.Name)
+    print("Model Date: " + _Model.OriginDate)
+    print("")
+    print("Model Data: ")
+    
+    
+    l_VibrationAxis = st.VibrationData()
+    l_VibrationAxis = _Model.VibrationLog
+    doPrintAxisDataToScreen(_AxisData=l_VibrationAxis.XAxis)
+    doPrintAxisDataToScreen(_AxisData=l_VibrationAxis.YAxis)
+    doPrintAxisDataToScreen(_AxisData=l_VibrationAxis.ZAxis)
+    
+    print("")
+    print("")
+    
+    
+
+
+
+def doPrintAxisDataToScreen(_AxisData: st.VibrationAxis):
+    print(" |")
+    print(" |   Axis Name:  " + _AxisData.AxisName)
+    print(" |")
+    print(" |   Min:        ", _AxisData.Min)
+    print(" |   Max:        ", _AxisData.Max)
+    print(" |   Mean:       ", _AxisData.Mean)
+    print(" |   Stand Dev:  ", _AxisData.StandDev)
+    print(" |---------------------------------------------------")
+
+
+
+
+def doPrintModelDifferences(_ModelDifferences: st.ModelDifference):
+    print(" |---------------------------------------------------")
+    print(" |   Master Model Name:   " + _ModelDifferences.MasterName)
+    print(" |   Other Model Name:    " + _ModelDifferences.OtherName)
+    print(" |---------------------------------------------------")
+    
+    doPrintAxisDifferences(_AxisDifferences=_ModelDifferences.XAxis, _AxisName="X")
+    doPrintAxisDifferences(_AxisDifferences=_ModelDifferences.YAxis, _AxisName="Y")
+    doPrintAxisDifferences(_AxisDifferences=_ModelDifferences.ZAxis, _AxisName="Z")
+    
+    print("")
+    print("")
+    
+    print("")
+
+
+
+def doPrintAxisDifferences(_AxisDifferences: st.AxisDifference, _AxisName: str):
+    
+    l_MinDiff = f.doGetNumberOfFixedLength(_Number = _AxisDifferences.MinDiff,
+                                           _Digits_BeforeDecimal = 3, 
+                                           _Digits_AfterDecimal = 6)
+    l_MinDiff_prnt = f.doGetNumberOfFixedLength(_Number = _AxisDifferences.MinDiff,
+                                                _Digits_BeforeDecimal = 2, 
+                                                _Digits_AfterDecimal = 3)
+    
+    l_MaxDiff = f.doGetNumberOfFixedLength(_Number = _AxisDifferences.MaxDiff, 
+                                           _Digits_BeforeDecimal = 3, 
+                                           _Digits_AfterDecimal = 6)
+    l_MaxDiff_prnt = f.doGetNumberOfFixedLength(_Number = _AxisDifferences.MaxDiff,
+                                                _Digits_BeforeDecimal = 2, 
+                                                _Digits_AfterDecimal = 3)
+    
+    l_MeanDiff = f.doGetNumberOfFixedLength(_Number = _AxisDifferences.MeanDiff, 
+                                            _Digits_BeforeDecimal = 3, 
+                                            _Digits_AfterDecimal = 6)
+    l_MeanDiff_prnt = f.doGetNumberOfFixedLength(_Number = _AxisDifferences.MeanDiff,
+                                                 _Digits_BeforeDecimal = 2, 
+                                                 _Digits_AfterDecimal = 3)
+    
+    l_StandDevDiff = f.doGetNumberOfFixedLength(_Number = _AxisDifferences.StandDevDiff, 
+                                                _Digits_BeforeDecimal = 3, 
+                                                _Digits_AfterDecimal = 6)
+    l_StandDevDiff_prnt = f.doGetNumberOfFixedLength(_Number = _AxisDifferences.StandDevDiff,
+                                                     _Digits_BeforeDecimal = 2, 
+                                                     _Digits_AfterDecimal = 3)
+    
+    
+    
+    #print info
+    print(" |   Axis Name:  " + _AxisName)
+    print(" |")
+    print(" |   Min Diff:       " + l_MinDiff + " (" + l_MinDiff_prnt + "%)")
+    print(" |   Max Diff:       " + l_MaxDiff + " (" + l_MaxDiff_prnt + "%)")
+    print(" |   Mean Diff:      " + l_MeanDiff + " (" + l_MeanDiff_prnt + "%)")
+    print(" |   Stand Dev Diff: " + l_StandDevDiff + " (" + l_StandDevDiff_prnt + "%)")
+    print(" |---------------------------------------------------")
+    
+
+    return False
 
 
 
 
 
-def getUserOperatingMode(valid_options):
+def getUserOperatingMode(l_ValidOperations: list[str]):
     # loop to get user input
     while True:
-
+        
         User_input = f.getUserInput("Enter selection: ", _AllowBlank=True)
 
         #check if the user input is valid
-        if User_input in valid_options:
+        if User_input in l_ValidOperations:
             return User_input
         
         else:
             print("Invalid input. Please try again.")
 
 
-
-def doPrintCurrentStatus(_CurrentModel):
-    
-    l_Model = _CurrentModel
-    
-    
-    #if there is data in the current model display it, otherwise display warning    
-    if len(l_Model.Name) > 0:
-        print("Current model:   " + _CurrentModel.Name)
-        print("Model date:      " + _CurrentModel.OriginDate)
-        
-    else:
-        print("No model loaded")
-    
-    
-    print("Waiting for user input")
-    print("\n")
 
 
 def doPrintUserModeOptions():
