@@ -6,6 +6,11 @@ __pycache__/
 # C extensions
 *.so
 
+
+# User info
+email.txt
+
+
 # Distribution / packaging
 .Python
 build/
