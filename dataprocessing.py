@@ -13,15 +13,16 @@ def doLoadFromCSVAndConvertToModel(_DirectoryPath: str,_MaxNumberOfFilesToSelect
 
     #Get useable data from file name
     l_LoadedVibrationDataList = list[st.VibrationData]()
-    l_LoadedVibrationDataList = doLoadCSVAndStoreAsVibrationDataStruct(_UserFileNameSelection=l_UserFileNameSelection)
+    l_LoadedVibrationDataList, l_Filedatelist, l_MotorNameList  = doLoadCSVAndStoreAsVibrationDataStruct(_UserFileNameSelection=l_UserFileNameSelection)
     
     
     #Convert list of vibration data to models
     l_NewModelsList = list[st.Model]()
-    l_Data = st.Model()
-    for l_Data in l_LoadedVibrationDataList:
-        l_NewModelsList.append(doGenerateModelFromDataset(l_Data, "TestModel"))
+    for i in range(len(l_LoadedVibrationDataList)):
+        l_NewModelsList.append(doGenerateModelFromDataset(l_LoadedVibrationDataList[i], 
+                                                          l_MotorNameList[i]))
 
+        l_NewModelsList[i].OriginDate = l_Filedatelist[i]
 
     return l_NewModelsList
 
@@ -29,11 +30,19 @@ def doLoadFromCSVAndConvertToModel(_DirectoryPath: str,_MaxNumberOfFilesToSelect
 
 def doLoadCSVAndStoreAsVibrationDataStruct(_UserFileNameSelection: list[str]):
     l_VibrationLogList = list[st.VibrationData]()
+    l_FileDateList = list[str]()
+    l_MotorNameList = list[str]()
+    
     for l_FileName in _UserFileNameSelection:        
-        l_VibrationLogList.append(doLoadFileAndConvertToVibrationDataStruct(_FileToLoad=l_FileName))
+        l_VibrationLog, l_Filedate, l_MotorName = doLoadFileAndConvertToVibrationDataStruct(_FileToLoad=l_FileName)
+        
+        l_VibrationLogList.append(l_VibrationLog)
+        l_FileDateList.append(l_Filedate)
+        l_MotorNameList.append(l_MotorName)
+        
         
     
-    return l_VibrationLogList
+    return l_VibrationLogList, l_FileDateList, l_MotorNameList
     
 
     
@@ -42,6 +51,10 @@ def doLoadFileAndConvertToVibrationDataStruct(_FileToLoad: str):
 
     # open files from user selection and load data
     l_LoadedLines = file_func.doLoadDataFromSelectedFile(_FileToLoad=_FileToLoad)
+    
+    l_Filedate = l_LoadedLines[0].split(",")[1].strip("\n")
+    l_MotorName = l_LoadedLines[1].split(",")[1].strip("\n")
+    
     
     l_LoadedLines = f.doTrimLines(lines=l_LoadedLines, 
                                     front_trim=3, 
@@ -66,7 +79,7 @@ def doLoadFileAndConvertToVibrationDataStruct(_FileToLoad: str):
     l_VibrationLog.ZAxis = doAddDataToVibrationAxis(_DataToAdd=l_Z, _AxisName="Z")
        
     
-    return l_VibrationLog
+    return l_VibrationLog, l_Filedate, l_MotorName
 
 
 
@@ -119,16 +132,6 @@ def doGenerateModelFromDataset(_VibrationData: st.VibrationData, _ModelName: str
 
 
 
-    
-def doCreateComparrisonBetweenTwoModels(_MasterModel: st.Model, _OtherModel: st.Model):
-    #get the data from the model 
-        
-    l_ComparrisonModel = doCompareTwoModels(_MasterModel=_MasterModel, 
-                                       _OtherModel=_OtherModel)
-            
-
-    return l_ComparrisonModel
-
 
 
 def doCompareTwoModels(_MasterModel: st.Model, _OtherModel: st.Model):
@@ -157,6 +160,7 @@ def doCompareTwoAxis(_MasterAxis: st.VibrationAxis, _OtherAxis: st.VibrationAxis
     
     l_AxisDiff = st.AxisDifference()
     
+        
     #Min diff
     l_AxisDiff.MinDiff = f.getDifferenceBetweenValues(_Value1=_MasterAxis.Min, 
                                                     _Value2=_OtherAxis.Min)
@@ -196,7 +200,19 @@ def doCompareTwoAxis(_MasterAxis: st.VibrationAxis, _OtherAxis: st.VibrationAxis
     
 
 
-
+def doFindDifferencesBetweenRawData(_MasterList: list[float], _OtherList: list[float]):
+    
+    l_RawDataDiff = list[float]()
+    l_RawDataDiff_prnt = list[float]()
+    
+    for i in range(len(_MasterList)):
+        l_RawDataDiff.append(f.getDifferenceBetweenValues(_Value1=_MasterList[i],
+                                                             _Value2=_OtherList[i]))
+        
+        l_RawDataDiff_prnt.append(f.getPrcntDifferenceBetweenValues(_Value1=_MasterList[i],
+                                                                   _Value2=_OtherList[i]))
+    
+    return l_RawDataDiff, l_RawDataDiff_prnt
 
 
 def doAddDataToVibrationAxis(_DataToAdd: list[float], _AxisName: str):

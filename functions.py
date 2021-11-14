@@ -64,10 +64,16 @@ def doFindMeanInList(_Dataset: list[float]):
 
 def doFindStandDevInList(_Dataset: list[float]):
     #find the standard deviation in a list
-    #return np.std(a=_Dataset,
-    #              ddof=1)
-    return 0
-
+    if len(_Dataset) < 2:
+        return 0.0
+    K = _Dataset[0]
+    n = Ex = Ex2 = 0.0
+    for x in _Dataset:
+        n = n + 1
+        Ex += x - K
+        Ex2 += (x - K) * (x - K)
+    variance = (Ex2 - (Ex * Ex) / n) / (n - 1)
+    return variance
 
 
 

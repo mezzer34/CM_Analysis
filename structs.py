@@ -67,6 +67,9 @@ class AxisDifference:
     MaxDiff_prnt: float
     MeanDiff_prnt: float
     StandDevDiff_prnt: float
+    
+    RawDataDiff: list[float]
+    RawDataDiff_prnt: list[float]
 
     def __init__(self):
         self.MinDiff = 0.0
@@ -78,6 +81,9 @@ class AxisDifference:
         self.MaxDiff_prnt = 0.0
         self.MeanDiff_prnt = 0.0
         self.StandDevDiff_prnt = 0.0
+        
+        self.RawDataDiff = []
+        self.RawDataDiff_prnt = []
 
 
 @dataclass
@@ -114,8 +120,14 @@ class PlotData(Enum):
     MasterOther_Compare_Z = 13
     MasterOther_Compare_All = 14
     
+    MasterOther_Compare_X_WithDiff = 21
+    MasterOther_Compare_Y_WithDiff = 22
+    MasterOther_Compare_Z_WithDiff = 23
+    MasterOther_Compare_All_WithDiff = 24
+    
+    
 
 class ChartType(Enum):
     Lineplot = 1
-    Scatterplot = 2
+    scatterplot = 2
     

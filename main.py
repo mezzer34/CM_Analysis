@@ -1,11 +1,20 @@
 import sys
 sys.setrecursionlimit(2000)
 
+print("Python version: " + sys.version)
+
+
+
+
+import matplotlib.pyplot as plt
+
+
 
 import file_func as file_func
 import functions as f
 import grapthing as grapth
 import dataprocessing as processing
+import emailfunc as em
 
 import structs as st       
     
@@ -15,13 +24,12 @@ import structs as st
 def main():    
     
     #loop and get user options until they quit    
-    l_ValidUserOptions = ["1", "2", "9", "q"]
+    l_ValidUserOptions = ["1", "2", "8", "9", "q"]
     
     l_MasterModel = st.Model()
     
     while True:
-        f.doClearConsole()
-        
+
         
         doPrintCurrentStatus(_CurrentModel=l_MasterModel)
         doPrintUserModeOptions()
@@ -38,6 +46,12 @@ def main():
             print("Loading from CSV to compare against existing model...")
             
             doOperatingMode_CheckAgainstModel(_ComparrisonDataset=l_MasterModel)
+
+        elif l_OperatingMode_UserSelection == "8":
+            print("Downloading files from email server") 
+            
+            doDownloadEmails()
+            
 
         elif l_OperatingMode_UserSelection == "9":
             print("Loading from CSV and generating reference Model...") 
@@ -73,45 +87,45 @@ def doOperatingMode_CheckAgainstModel(_ComparrisonDataset: st.Model):
     l_Models = processing.doLoadFromCSVAndConvertToModel(_DirectoryPath="./data/",
                                                          _MaxNumberOfFilesToSelect = 0)
     
-    
-    
-    # Compare the user loaded models with the master model
-    l_DifferentialModels = list[st.ModelDifference]()
-    l_ModelToCheck = st.Model()
-    
-    for l_ModelToCheck in l_Models:
-        l_DifferentialModels.append(processing.doCreateComparrisonBetweenTwoModels(_MasterModel=_ComparrisonDataset,
-                                                                                    _OtherModel= l_ModelToCheck)) 
-
-
-    #print the results
-#   for i in range(len(l_DifferentialModels)):
-#        f.doClearConsole()
-#        doPrintModelDifferences(_ModelDifferences=l_DifferentialModels[i])
-        
-#        grapth.doPlotModel(_MasterModel=_ComparrisonDataset,
-#                           _OtherModel=l_DifferentialModels[i],
-#                           _ChartType=st.ChartType.Lineplot,
-#                           _PlotData=st.PlotData.MasterOther_Compare_X)
- 
     #print comparison between two models
     for i in range(len(l_Models)):
-        f.doClearConsole()
         grapth.doPlotModel(_MasterModel=_ComparrisonDataset,
                            _OtherModel=l_Models[i],
                            _ChartType=st.ChartType.Lineplot,
-                           _PlotData=st.PlotData.MasterOther_Compare_All)
+                           _PlotData=st.PlotData.MasterOther_Compare_All_WithDiff)
         
-                
-        
-        
-        #grapth.doPlotModelDifferences(_ModelDifferences=l_DifferentialModels[i])
-        
-        #Pause here and wait for user acknowledgement
-        input("Press enter to continue")
-        
-        
-                
+       
+        l_TimeExceededList = doFindAmountOfTimeVibrationWasAboveLimits(_MasterModel=_ComparrisonDataset,
+                                                                      _OtherModel=l_Models[i])
+       
+        #print the amount of time the vibration was above the limits
+        if l_TimeExceededList[0] == 0:
+            print("X Axis Ok")
+
+        else:
+            print("X Axis Failed - "+ str(l_TimeExceededList[0]) + " seconds")
+
+        if l_TimeExceededList[1] == 0:
+            print("Y Axis Ok")
+
+        else:
+            print("Y Axis Failed - "+ str(l_TimeExceededList[1]) + " seconds")
+
+        if l_TimeExceededList[2] == 0:
+            print("Z Axis Ok")
+
+        else:
+            print("Z Axis Failed - "+ str(l_TimeExceededList[2]) + " seconds")
+
+
+        print("")
+        print("")       
+       
+       
+       
+    plt.show()
+    
+    input("PRess enter to continue")
 
 
 
@@ -124,23 +138,34 @@ def doOperatingMode_LearnDataset():
     l_NewModel = l_NewModelList[0]
     
     #get new dataset name
-    l_NewName = f.getUserInput("Enter new dataset name: ", _AllowBlank=False)
+    print("Motor name from file: " + l_NewModel.Name)
+    l_NewName = f.getUserInput("Enter new Motor Dataset name: " + l_NewModel.Name, _AllowBlank=True)
     
+    if l_NewName != "":
+        #set the name of the model
+        l_NewModel.Name = l_NewName
     
-    #set the name of the model
-    l_NewModel.Name = l_NewName
+    if l_NewModel.Name == "":
+        l_NewModel.Name = "New Model"
+        
 
 
 
     #save the new model to file
     file_func.doSaveModelToFile(_DataToStore=l_NewModel, 
-                                _FullFilepath= "./LearnedData/" + l_NewName)
+                                _FullFilepath= "./LearnedData/" + l_NewModel.Name)
 
 
     
     return l_NewModel
 
 
+def doDownloadEmails():
+    
+    l_Result = em.doGetMail()
+
+    
+    print(l_Result)
 
 
 
@@ -286,6 +311,53 @@ def doPrintUserModeOptions():
 
 
 
+def doFindAmountOfTimeVibrationWasAboveLimits(_MasterModel: st.Model, _OtherModel: st.Model):
+    
+    l_XAxis_FramesExceeded = doFindAmountOfFramesListExceedsMax(_ListToCheck=_OtherModel.VibrationLog.XAxis.RawData,
+                                                                _MaxValue=_MasterModel.VibrationLog.XAxis.Max)
+    
+    l_YAxis_FramesExceeded = doFindAmountOfFramesListExceedsMax(_ListToCheck=_OtherModel.VibrationLog.YAxis.RawData,
+                                                                _MaxValue=_MasterModel.VibrationLog.YAxis.Max)
+    
+    l_ZAxis_FramesExceeded = doFindAmountOfFramesListExceedsMax(_ListToCheck=_OtherModel.VibrationLog.ZAxis.RawData,
+                                                                _MaxValue=_MasterModel.VibrationLog.ZAxis.Max)
+    
+    
+    l_TimePerFrame = _MasterModel.VibrationLog.Time[1] - _MasterModel.VibrationLog.Time[0]
+    
+    l_XAxis_TimeExceeded = l_XAxis_FramesExceeded * l_TimePerFrame
+    l_YAxis_TimeExceeded = l_YAxis_FramesExceeded * l_TimePerFrame
+    l_ZAxis_TimeExceeded = l_ZAxis_FramesExceeded * l_TimePerFrame
+    
+    l_TimeEcceededList = [l_XAxis_TimeExceeded, l_YAxis_TimeExceeded, l_ZAxis_TimeExceeded]
+    
+    return l_TimeEcceededList
+    
+    
+    
+    
+
+def doFindAmountOfFramesListExceedsMax(_ListToCheck: list[float], _MaxValue: float):
+    
+    l_AmountOfFramesExceedingMax = 0
+    
+    for i in range(0, len(_ListToCheck)):
+        if (_ListToCheck[i] > _MaxValue):
+            l_AmountOfFramesExceedingMax += 1
+            
+    return l_AmountOfFramesExceedingMax
+
+
+
 
 if __name__ == "__main__":
-    main()
+    #print python version (Very jank, shush)
+    version = sys.version_info
+    
+    #Who decided that python versions should be managed like this??? Its terrible
+    
+    if version.major == 3 and version.minor >= 9:
+        main()
+    
+    else:
+        raise Exception("Must be using Python 3.9")

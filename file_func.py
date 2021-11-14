@@ -1,6 +1,5 @@
 import os
 
-from numpy import true_divide
 import structs as st
 
 import pickle
