@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data_tree name="root" nodeIDField="0" protocolName="CDS3" type="container">
+    <config filename_source1="C:/Users/chris.messruther/Desktop/FirmacEIP/FirmacEIPtests v4.Device.Application.xml"/>
+    <property_alias>
+        <property display="Tag name" name="tagName"/>
+        <property display="Device data type" name="typeName"/>
+        <property display="Array size" name="arraySize"/>
+        <property display="Data type" name="icomType"/>
+        <property display="Tag URI" name="tagURI"/>
+    </property_alias>
+    <data_type name="Application" protocolName="CDS3" type="container">
+        <data_type name="GVL" protocolName="CDS3" type="container">
+            <data_type name="HMI" typeName="stHMI" protocolName="CDS3" type="struct">
+                <data_type name="Datetime_UNIX" typeName="ULINT" tagName="Application/GVL/HMI/Datetime_UNIX" icomType="uint64" tagURI="unknownID?M?Application/GVL/HMI/Datetime_UNIX?uint64" type="basic"/>
+                <data_type name="Datetime_String" typeName="STRING" tagName="Application/GVL/HMI/Datetime_String" icomType="string-80" tagURI="unknownID?M?Application/GVL/HMI/Datetime_String?string-80" type="basic"/>
+                <data_type name="FileLogger" typeName="stFileLogger" type="struct">
+                    <data_type name="StartPB" typeName="stPB_LP" type="struct">
+                        <data_type name="PB" typeName="BOOL" tagName="Application/GVL/HMI/FileLogger/StartPB/PB" icomType="boolean" tagURI="unknownID?M?Application/GVL/HMI/FileLogger/StartPB/PB?boolean" type="basic"/>
+                        <data_type name="LP" typeName="BOOL" tagName="Application/GVL/HMI/FileLogger/StartPB/LP" icomType="boolean" tagURI="unknownID?M?Application/GVL/HMI/FileLogger/StartPB/LP?boolean" type="basic"/>
+                    </data_type>
+                    <data_type name="ResetPB" typeName="stPB_LP" type="struct">
+                        <data_type name="PB" typeName="BOOL" tagName="Application/GVL/HMI/FileLogger/ResetPB/PB" icomType="boolean" tagURI="unknownID?M?Application/GVL/HMI/FileLogger/ResetPB/PB?boolean" type="basic"/>
+                        <data_type name="LP" typeName="BOOL" tagName="Application/GVL/HMI/FileLogger/ResetPB/LP" icomType="boolean" tagURI="unknownID?M?Application/GVL/HMI/FileLogger/ResetPB/LP?boolean" type="basic"/>
+                    </data_type>
+                    <data_type name="CurrentLine" typeName="UDINT" tagName="Application/GVL/HMI/FileLogger/CurrentLine" icomType="unsignedInt" tagURI="unknownID?M?Application/GVL/HMI/FileLogger/CurrentLine?unsignedInt" type="basic"/>
+                    <data_type name="TargetNumLines" typeName="UDINT" tagName="Application/GVL/HMI/FileLogger/TargetNumLines" icomType="unsignedInt" tagURI="unknownID?M?Application/GVL/HMI/FileLogger/TargetNumLines?unsignedInt" type="basic"/>
+                    <data_type name="MotorName" typeName="STRING" tagName="Application/GVL/HMI/FileLogger/MotorName" icomType="string-80" tagURI="unknownID?M?Application/GVL/HMI/FileLogger/MotorName?string-80" type="basic"/>
+                    <data_type name="CurrentFileName" typeName="STRING" tagName="Application/GVL/HMI/FileLogger/CurrentFileName" icomType="string-80" tagURI="unknownID?M?Application/GVL/HMI/FileLogger/CurrentFileName?string-80" type="basic"/>
+                    <data_type name="CurrentTime" typeName="UDINT" tagName="Application/GVL/HMI/FileLogger/CurrentTime" icomType="unsignedInt" tagURI="unknownID?M?Application/GVL/HMI/FileLogger/CurrentTime?unsignedInt" type="basic"/>
+                    <data_type name="RecordToFilePeriod" typeName="TIME" tagName="Application/GVL/HMI/FileLogger/RecordToFilePeriod" icomType="unsignedInt" tagURI="unknownID?M?Application/GVL/HMI/FileLogger/RecordToFilePeriod?unsignedInt" type="basic"/>
+                </data_type>
+                <data_type name="RealtimeData" typeName="stData" type="struct">
+                    <data_type name="XAxis" typeName="REAL" tagName="Application/GVL/HMI/RealtimeData/XAxis" icomType="float" tagURI="unknownID?M?Application/GVL/HMI/RealtimeData/XAxis?float" type="basic"/>
+                    <data_type name="YAxis" typeName="REAL" tagName="Application/GVL/HMI/RealtimeData/YAxis" icomType="float" tagURI="unknownID?M?Application/GVL/HMI/RealtimeData/YAxis?float" type="basic"/>
+                    <data_type name="ZAxis" typeName="REAL" tagName="Application/GVL/HMI/RealtimeData/ZAxis" icomType="float" tagURI="unknownID?M?Application/GVL/HMI/RealtimeData/ZAxis?float" type="basic"/>
+                    <data_type name="Temp" typeName="REAL" tagName="Application/GVL/HMI/RealtimeData/Temp" icomType="float" tagURI="unknownID?M?Application/GVL/HMI/RealtimeData/Temp?float" type="basic"/>
+                    <data_type name="MotorSpeed" typeName="DINT" tagName="Application/GVL/HMI/RealtimeData/MotorSpeed" icomType="int" tagURI="unknownID?M?Application/GVL/HMI/RealtimeData/MotorSpeed?int" type="basic"/>
+                </data_type>
+                <data_type name="Motor" typeName="stHMI_Motor" type="struct">
+                    <data_type name="Reverse" typeName="stPB_LP" type="struct">
+                        <data_type name="PB" typeName="BOOL" tagName="Application/GVL/HMI/Motor/Reverse/PB" icomType="boolean" tagURI="unknownID?M?Application/GVL/HMI/Motor/Reverse/PB?boolean" type="basic"/>
+                        <data_type name="LP" typeName="BOOL" tagName="Application/GVL/HMI/Motor/Reverse/LP" icomType="boolean" tagURI="unknownID?M?Application/GVL/HMI/Motor/Reverse/LP?boolean" type="basic"/>
+                    </data_type>
+                    <data_type name="Forward" typeName="stPB_LP" type="struct">
+                        <data_type name="PB" typeName="BOOL" tagName="Application/GVL/HMI/Motor/Forward/PB" icomType="boolean" tagURI="unknownID?M?Application/GVL/HMI/Motor/Forward/PB?boolean" type="basic"/>
+                        <data_type name="LP" typeName="BOOL" tagName="Application/GVL/HMI/Motor/Forward/LP" icomType="boolean" tagURI="unknownID?M?Application/GVL/HMI/Motor/Forward/LP?boolean" type="basic"/>
+                    </data_type>
+                    <data_type name="Speed" typeName="DINT" tagName="Application/GVL/HMI/Motor/Speed" icomType="int" tagURI="unknownID?M?Application/GVL/HMI/Motor/Speed?int" type="basic"/>
+                    <data_type name="AdaptiveSpeedPB" typeName="BOOL" tagName="Application/GVL/HMI/Motor/AdaptiveSpeedPB" icomType="boolean" tagURI="unknownID?M?Application/GVL/HMI/Motor/AdaptiveSpeedPB?boolean" type="basic"/>
+                    <data_type name="AdaptiveSpeedLPClr" typeName="UINT" tagName="Application/GVL/HMI/Motor/AdaptiveSpeedLPClr" icomType="unsignedShort" tagURI="unknownID?M?Application/GVL/HMI/Motor/AdaptiveSpeedLPClr?unsignedShort" type="basic"/>
+                    <data_type name="StatusWord" typeName="INT" tagName="Application/GVL/HMI/Motor/StatusWord" icomType="short" tagURI="unknownID?M?Application/GVL/HMI/Motor/StatusWord?short" type="basic"/>
+                    <data_type name="TrueSpeed" typeName="DINT" tagName="Application/GVL/HMI/Motor/TrueSpeed" icomType="int" tagURI="unknownID?M?Application/GVL/HMI/Motor/TrueSpeed?int" type="basic"/>
+                </data_type>
+            </data_type>
+        </data_type>
+    </data_type>
+</data_tree>
