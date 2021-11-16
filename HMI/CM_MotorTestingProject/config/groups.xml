@@ -1,0 +1,41 @@
+<groups>
+ <group Type="Auto">
+  <name>Calendar@$GroupSubscrWgt@$0</name>
+  <active>false</active>
+  <tag>System Time</tag>
+ </group>
+ <group Type="Auto">
+  <name>File recording@$GroupSubscrWgt@$0</name>
+  <active>false</active>
+  <tag>Codesys_HMI/Application/GVL/HMI/FileLogger/CurrentFileName</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/FileLogger/CurrentLine</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/FileLogger/MotorName</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/FileLogger/RecordToFilePeriod</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/FileLogger/ResetPB/LP</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/FileLogger/ResetPB/PB</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/FileLogger/StartPB/LP</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/FileLogger/StartPB/PB</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/FileLogger/TargetNumLines</tag>
+ </group>
+ <group Type="Auto">
+  <name>Motor control@$GroupSubscrWgt@$0</name>
+  <active>false</active>
+  <tag>Codesys_HMI/Application/GVL/HMI/Motor/AdaptiveSpeedLPClr</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/Motor/AdaptiveSpeedPB</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/Motor/Forward/LP</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/Motor/Forward/PB</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/Motor/Reverse/LP</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/Motor/Reverse/PB</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/Motor/Speed</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/Motor/StatusWord</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/Motor/TrueSpeed</tag>
+ </group>
+ <group Type="Auto">
+  <name>Raw results@$GroupSubscrWgt@$0</name>
+  <active>false</active>
+  <tag>Codesys_HMI/Application/GVL/HMI/RealtimeData/Temp</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/RealtimeData/XAxis</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/RealtimeData/YAxis</tag>
+  <tag>Codesys_HMI/Application/GVL/HMI/RealtimeData/ZAxis</tag>
+ </group>
+</groups>

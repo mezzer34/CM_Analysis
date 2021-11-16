@@ -1,0 +1,37 @@
+<scheduledActions>
+ <multiLangs>
+  <langs defLangId="L1" curLangId="L1">
+   <lang removable="false" langCode="en-US" langId="L1" writingsystem="Any" name="Lang1" defaultFont="Roboto"/>
+  </langs>
+  <MLTexts>
+   <MLText L1="Every" id="0"/>
+   <MLText L1="Hourly" id="1"/>
+   <MLText L1="Daily" id="2"/>
+   <MLText L1="Weekly" id="3"/>
+   <MLText L1="Monthly" id="4"/>
+   <MLText L1="Yearly" id="5"/>
+   <MLText L1="By Date" id="6"/>
+   <MLText L1="Hi-Res" id="7"/>
+   <MLText L1="Time" id="8"/>
+   <MLText L1="Sunrise+" id="9"/>
+   <MLText L1="Sunrise-" id="10"/>
+   <MLText L1="Sunset+" id="11"/>
+   <MLText L1="Sunset-" id="12"/>
+   <MLText L1="Random10" id="13"/>
+   <MLText L1="Random20" id="14"/>
+  </MLTexts>
+ </multiLangs>
+ <typeMLDesc ByDate="[6@Schedule]By Date" Daily="[2@Schedule]Daily" Every="[0@Schedule]Every" Monthly="[4@Schedule]Monthly" Yearly="[5@Schedule]Yearly" HiRes="[7@Schedule]Hi-Res" Hourly="[1@Schedule]Hourly" Weekly="[3@Schedule]Weekly"/>
+ <modeMLDesc SunsetPlus="[11@Schedule]Sunset+" SunriseMinus="[10@Schedule]Sunrise-" SunsetMinus="[12@Schedule]Sunset-" SunrisePlus="[9@Schedule]Sunrise+" Time="[8@Schedule]Time" Random20="[14@Schedule]Random20" Random10="[13@Schedule]Random10"/>
+ <highResCyclicAction>
+  <id>Schedule1</id>
+  <enable>true</enable>
+  <onstartup>false</onstartup>
+  <executeonlyatstartup>false</executeonlyatstartup>
+  <millisecond>100</millisecond>
+  <priority>1</priority>
+  <actions enable="1" id="1">
+   <macroAction actionFunction="jsAction" parameters="Schedule1_OnAction" actionID="0"/>
+  </actions>
+ </highResCyclicAction>
+</scheduledActions>

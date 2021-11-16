@@ -1,0 +1,127 @@
+<wgtPage rev="1" projectType="HMI Project">
+ <object pageName="Raw results" pageSize="800,480" class="PageWgt" dataWndSize="0,70" downloadPrepDone="false" usedFonts="Roboto,Tahoma" staticFile="opt/raw results.png" id="Raw results" staticOptEnable="true">
+  <wgtStyle width="800" x="0" y="0" height="480" fitToSize="1" ver="040001443" color="rgb(192,192,192)" v="04.00.01.443"/>
+  <object class="PageMLTextMgrWgt" id="_PageMLTextMgrWgt" mgrType="Page" mlFileName="">
+   <wgtStyle width="0" x="0" y="0" height="0"/>
+   <langs defLangId="L1" curLangId="L1">
+    <lang removable="false" langCode="en-US" langId="L1" writingsystem="Any" name="Lang1" defaultFont="Roboto"/>
+   </langs>
+   <MLTexts>
+    <MLText L1="Y-Axis" id="2"/>
+    <MLText L1="X-Axis" id="3"/>
+    <MLText L1="Z-Axis" id="4"/>
+    <MLText L1="Current Condition Data" id="10"/>
+    <MLText L1="Logging" id="11"/>
+    <MLText L1="Temp" id="14"/>
+    <MLText L1="Motor" id="15"/>
+   </MLTexts>
+  </object>
+  <object class="GroupSubscribeWgt" id="Raw results@$GroupSubscrWgt@$0">
+   <wgtStyle width="0" x="0" y="0" height="0"/>
+  </object>
+  <object class="NumericWgt" id="field2">
+   <wgtStyle forcePaint="8" font-family="Roboto" font-sizepx="21" cx="177.10" showThousandSeparator="false" cy="16.20" step="1" timeSpec="local" x="178.41" y="128.99" vert-align="middle" frameFill="rgb(255,255,255)" text="99999" max="3.40282e+038" usingFormat="" value="99999" keypad-type="Numeric" font-color="rgb(23,30,40)" min="-3.40282e+038" width="384" numberFormat="0" height="35" frame="true" font-size="16" form="Numeric" frameColor="rgb(255,173,91)"/>
+   <dataLinks>
+    <dataLink readWrite="R" tagType="float" attribute="value" tag="Codesys_HMI/Application/GVL/HMI/RealtimeData/XAxis" class="TagMgrWgt" widgetType="Project" sourceType="Tag" tagIndex="-1" dataSource="_TagMgr"/>
+   </dataLinks>
+  </object>
+  <object class="LabelWgt" id="label2" static="true">
+   <wgtStyle width="127.29" font-color="rgb(23,30,40)" x="47.59" font-sizepx="16" y="129" font-family="Roboto" wrapping="true" cx="58.99" cy="14" height="29.55" vert-align="middle" marker="true" keypad-type="None" font-size="12"/>
+   <links>
+    <lang class="MLTextLink" textid="3"/>
+   </links>
+  </object>
+  <object class="LabelWgt" id="label3" static="true">
+   <wgtStyle font-bold="true" marker="true" font-family="Tahoma" font-sizepx="32" cx="370.74" cy="30.80" alignment="center" x="0" y="0" vert-align="middle" frameFill="rgb(71,98,137)" keypad-type="None" font-color="rgb(255,255,255)" width="799" wrapping="true" height="64" frame="true" font-size="24" frameColor="none"/>
+   <links>
+    <lang class="MLTextLink" textid="10">
+     <MLFontFamily L1="Tahoma"/>
+    </lang>
+   </links>
+  </object>
+  <object class="NumericWgt" id="field1">
+   <wgtStyle forcePaint="8" font-family="Roboto" font-sizepx="21" cx="177.10" showThousandSeparator="false" cy="16.20" step="1" timeSpec="local" x="178.41" y="181" vert-align="middle" frameFill="rgb(255,255,255)" text="99999" max="3.40282e+038" usingFormat="" value="99999" keypad-type="Numeric" font-color="rgb(23,30,40)" min="-3.40282e+038" width="384" numberFormat="0" height="35" frame="true" font-size="16" form="Numeric" frameColor="rgb(255,173,91)"/>
+   <dataLinks>
+    <dataLink readWrite="R" tagType="float" attribute="value" tag="Codesys_HMI/Application/GVL/HMI/RealtimeData/YAxis" class="TagMgrWgt" widgetType="Project" sourceType="Tag" tagIndex="-1" dataSource="_TagMgr"/>
+   </dataLinks>
+  </object>
+  <object class="LabelWgt" id="label1" static="true">
+   <wgtStyle width="127.29" font-color="rgb(23,30,40)" x="47.59" font-sizepx="16" y="181" font-family="Roboto" wrapping="true" cx="58.99" cy="14" height="29.55" vert-align="middle" marker="true" keypad-type="None" font-size="12"/>
+   <links>
+    <lang class="MLTextLink" textid="2"/>
+   </links>
+  </object>
+  <object class="NumericWgt" id="field3">
+   <wgtStyle forcePaint="8" font-family="Roboto" font-sizepx="21" cx="177.10" showThousandSeparator="false" cy="16.20" step="1" timeSpec="local" x="178.41" y="231" vert-align="middle" frameFill="rgb(255,255,255)" text="99999" max="3.40282e+038" usingFormat="" value="99999" keypad-type="Numeric" font-color="rgb(23,30,40)" min="-3.40282e+038" width="384" numberFormat="0" height="35" frame="true" font-size="16" form="Numeric" frameColor="rgb(255,173,91)"/>
+   <dataLinks>
+    <dataLink readWrite="R" tagType="float" attribute="value" tag="Codesys_HMI/Application/GVL/HMI/RealtimeData/ZAxis" class="TagMgrWgt" widgetType="Project" sourceType="Tag" tagIndex="-1" dataSource="_TagMgr"/>
+   </dataLinks>
+  </object>
+  <object class="LabelWgt" id="label4" static="true">
+   <wgtStyle width="127.29" font-color="rgb(23,30,40)" x="47.59" font-sizepx="16" y="231" font-family="Roboto" wrapping="true" cx="58.99" cy="14" height="29.55" vert-align="middle" marker="true" keypad-type="None" font-size="12"/>
+   <links>
+    <lang class="MLTextLink" textid="4"/>
+   </links>
+  </object>
+  <object class="GroupWgt" id="BtnStd2" customType="Button">
+   <wgtStyle width="120" x="662.38" y="390.36" cx="60" cy="39" height="78"/>
+   <links>
+    <attr attrName="bdrImage" alias="ButtonWgt.bdrImage;ImageWgt1.bdrImage"/>
+   </links>
+   <object class="ImageWgt" hmiStyle="hmi-name:chrome; hmi-shape:rect; hmi-type:bkgd" id="BtnStd2.frmImg" static="true">
+    <wgtStyle width="120" imagePath="images/frame_rect_chrome.svg" x="0" y="0" bdrImageSize="52.00,50.00" fill="rgb(127,127,127)" cx="96.35" cy="68.13" bdrSize="0.17,0.14,0.16,0.16" height="78" bdrEdges="0.14,0.13,0.12,0.13"/>
+   </object>
+   <object class="ButtonWgt" hmiStyle="hmi-name:shiney; hmi-shape:rect; hmi-type:btn; type:btn" id="BtnStd2.btn">
+    <wgtStyle width="87.69" x="16.15" y="10.50" bdrImageSize="38.00,37.00" fill="rgb(120,120,120)" cx="73.48" form="standard" cy="51.18" bdrSize="0.11,0.11,0.08,0.09" height="57" releasePath="images\btn_shiney_rect_1.svg" needlePath="images\btn_shiney_rect_2_rev2.svg" type="momentary" value="0"/>
+    <links>
+     <action pageName="motor control.jmx" class="LoadPageAction" attribute="onMouseRelease" event="onMouseUp" actionID="1" actionWgt="_PageMgr"/>
+    </links>
+   </object>
+   <object class="LabelWgt" hmiStyle="hmi-type:wgtlabel" id="BtnStd2.lbl">
+    <wgtStyle width="73.85" font-color="rgb(40,40,40)" x="20.77" forcePaint="1" font-sizepx="18" y="15" font-family="Roboto" font-bold="true" wrapping="true" cx="71.52" cy="44.01" height="46.50" alignment="center" vert-align="middle" keypad-type="None" font-size="14"/>
+    <links>
+     <lang class="MLTextLink" textid="15"/>
+    </links>
+   </object>
+   <object class="ImageWgt" hmiStyle="hmi-name:solid; hmi-shape:rect; hmi-type:icon" id="BtnStd2.icoImg" static="true">
+    <wgtStyle width="46.15" x="34.62" y="25.50" cx="30.83" cy="15.72" height="25.50"/>
+   </object>
+  </object>
+  <object class="NumericWgt" id="field4">
+   <wgtStyle forcePaint="8" font-family="Roboto" font-sizepx="21" cx="177.10" showThousandSeparator="false" cy="16.20" step="1" timeSpec="local" x="181.46" y="308.81" vert-align="middle" frameFill="rgb(255,255,255)" text="99999" max="3.40282e+038" usingFormat="" value="99999" keypad-type="Numeric" font-color="rgb(23,30,40)" min="-3.40282e+038" width="384" numberFormat="0" height="35" frame="true" font-size="16" form="Numeric" frameColor="rgb(255,173,91)"/>
+   <dataLinks>
+    <dataLink readWrite="R" tagType="float" attribute="value" tag="Codesys_HMI/Application/GVL/HMI/RealtimeData/Temp" class="TagMgrWgt" widgetType="Project" sourceType="Tag" tagIndex="-1" dataSource="_TagMgr"/>
+   </dataLinks>
+  </object>
+  <object class="LabelWgt" id="label5" static="true">
+   <wgtStyle width="127.29" font-color="rgb(23,30,40)" x="50.64" font-sizepx="16" y="308.81" font-family="Roboto" wrapping="true" cx="58.99" cy="14" height="29.55" vert-align="middle" marker="true" keypad-type="None" font-size="12"/>
+   <links>
+    <lang class="MLTextLink" textid="14"/>
+   </links>
+  </object>
+  <object class="GroupWgt" id="BtnStd4" customType="Button">
+   <wgtStyle width="120" x="665.21" y="285.32" cx="60" cy="39" height="78"/>
+   <links>
+    <attr attrName="bdrImage" alias="ButtonWgt.bdrImage;ImageWgt1.bdrImage"/>
+   </links>
+   <object class="ImageWgt" hmiStyle="hmi-name:chrome; hmi-shape:rect; hmi-type:bkgd" id="BtnStd4.frmImg" static="true">
+    <wgtStyle width="120" imagePath="images/frame_rect_chrome.svg" x="0" y="0" bdrImageSize="52.00,50.00" fill="rgb(127,127,127)" cx="96.35" cy="68.13" bdrSize="0.17,0.14,0.16,0.16" height="78" bdrEdges="0.14,0.13,0.12,0.13"/>
+   </object>
+   <object class="ButtonWgt" hmiStyle="hmi-name:shiney; hmi-shape:rect; hmi-type:btn; type:btn" id="BtnStd4.btn">
+    <wgtStyle width="87.69" x="16.15" y="10.50" bdrImageSize="38.00,37.00" fill="rgb(120,120,120)" cx="73.48" form="standard" cy="51.18" bdrSize="0.11,0.11,0.08,0.09" height="57" releasePath="images\btn_shiney_rect_1.svg" needlePath="images\btn_shiney_rect_2_rev2.svg" type="momentary" value="0"/>
+    <links>
+     <action pageName="file recording.jmx" class="LoadPageAction" attribute="onMouseRelease" event="onMouseUp" actionID="1" actionWgt="_PageMgr"/>
+    </links>
+   </object>
+   <object class="LabelWgt" hmiStyle="hmi-type:wgtlabel" id="BtnStd4.lbl">
+    <wgtStyle width="73.85" font-color="rgb(40,40,40)" x="20.77" forcePaint="1" font-sizepx="18" y="15" font-family="Roboto" font-bold="true" wrapping="true" cx="71.52" cy="44.01" height="46.50" alignment="center" vert-align="middle" keypad-type="None" font-size="14"/>
+    <links>
+     <lang class="MLTextLink" textid="11"/>
+    </links>
+   </object>
+   <object class="ImageWgt" hmiStyle="hmi-name:solid; hmi-shape:rect; hmi-type:icon" id="BtnStd4.icoImg" static="true">
+    <wgtStyle width="46.15" x="34.62" y="25.50" cx="30.83" cy="15.72" height="25.50"/>
+   </object>
+  </object>
+ </object>
+</wgtPage>

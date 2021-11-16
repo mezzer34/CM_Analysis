@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tag_dictionaries>
+    <dictionary_name>[CODESYS V3 ETH prot1] FirmacEIPtests v4.Device.Application.xml</dictionary_name>
+    <dictionary_name>[CODESYS V3 ETH prot1] FirmacEIPtests.Device.Application.xml</dictionary_name>
+    <filewatchers>
+        <fileWatcher_protocol>CDS3</fileWatcher_protocol>
+    </filewatchers>
+</tag_dictionaries>

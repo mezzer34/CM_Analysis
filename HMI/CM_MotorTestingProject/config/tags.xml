@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tags>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/Datetime_UNIX</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/Datetime_UNIX?uint64</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/Datetime_UNIX?uint64</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/Datetime_UNIX</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>18446744073709551615</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/Datetime_String</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/Datetime_String?string-80</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/Datetime_String?string-80</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/Datetime_String</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/FileLogger/CurrentLine</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/FileLogger/CurrentLine?unsignedInt</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/FileLogger/CurrentLine?unsignedInt</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/FileLogger/CurrentLine</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>4294967295</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/FileLogger/MotorName</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/FileLogger/MotorName?string-80</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/FileLogger/MotorName?string-80</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/FileLogger/MotorName</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/FileLogger/CurrentFileName</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/FileLogger/CurrentFileName?string-80</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/FileLogger/CurrentFileName?string-80</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/FileLogger/CurrentFileName</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/FileLogger/RecordToFilePeriod</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/FileLogger/RecordToFilePeriod?unsignedInt</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/FileLogger/RecordToFilePeriod?unsignedInt</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/FileLogger/RecordToFilePeriod</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>4294967295</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/FileLogger/ResetPB/LP</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/FileLogger/ResetPB/LP?boolean</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/FileLogger/ResetPB/LP?boolean</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/FileLogger/ResetPB/LP</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>1</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/FileLogger/ResetPB/PB</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/FileLogger/ResetPB/PB?boolean</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/FileLogger/ResetPB/PB?boolean</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/FileLogger/ResetPB/PB</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>1</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/FileLogger/StartPB/LP</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/FileLogger/StartPB/LP?boolean</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/FileLogger/StartPB/LP?boolean</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/FileLogger/StartPB/LP</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>1</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/FileLogger/StartPB/PB</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/FileLogger/StartPB/PB?boolean</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/FileLogger/StartPB/PB?boolean</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/FileLogger/StartPB/PB</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>1</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/RealtimeData/Temp</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/RealtimeData/Temp?float</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/RealtimeData/Temp?float</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/RealtimeData/Temp</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>-3.40282e+38</min>
+        <max>3.40282e+38</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/RealtimeData/XAxis</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/RealtimeData/XAxis?float</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/RealtimeData/XAxis?float</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/RealtimeData/XAxis</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>-3.40282e+38</min>
+        <max>3.40282e+38</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/RealtimeData/YAxis</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/RealtimeData/YAxis?float</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/RealtimeData/YAxis?float</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/RealtimeData/YAxis</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>-3.40282e+38</min>
+        <max>3.40282e+38</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/RealtimeData/ZAxis</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/RealtimeData/ZAxis?float</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/RealtimeData/ZAxis?float</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/RealtimeData/ZAxis</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>-3.40282e+38</min>
+        <max>3.40282e+38</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/FileLogger/TargetNumLines</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/FileLogger/TargetNumLines?unsignedInt</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/FileLogger/TargetNumLines?unsignedInt</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/FileLogger/TargetNumLines</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>4294967295</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/FileLogger/CurrentTime</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/FileLogger/CurrentTime?unsignedInt</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/FileLogger/CurrentTime?unsignedInt</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/FileLogger/CurrentTime</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>4294967295</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/RealtimeData/MotorSpeed</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/RealtimeData/MotorSpeed?int</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/RealtimeData/MotorSpeed?int</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/RealtimeData/MotorSpeed</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>-2147483648</min>
+        <max>2147483647</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/Motor/Reverse/PB</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/Motor/Reverse/PB?boolean</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/Motor/Reverse/PB?boolean</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/Motor/Reverse/PB</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>1</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/Motor/Reverse/LP</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/Motor/Reverse/LP?boolean</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/Motor/Reverse/LP?boolean</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/Motor/Reverse/LP</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>1</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/Motor/Forward/PB</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/Motor/Forward/PB?boolean</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/Motor/Forward/PB?boolean</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/Motor/Forward/PB</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>1</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/Motor/Forward/LP</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/Motor/Forward/LP?boolean</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/Motor/Forward/LP?boolean</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/Motor/Forward/LP</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>1</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/Motor/Speed</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/Motor/Speed?int</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/Motor/Speed?int</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/Motor/Speed</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>-2147483648</min>
+        <max>2147483647</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/Motor/StatusWord</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/Motor/StatusWord?short</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/Motor/StatusWord?short</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/Motor/StatusWord</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>-32768</min>
+        <max>32767</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/Motor/TrueSpeed</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/Motor/TrueSpeed?int</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/Motor/TrueSpeed?int</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/Motor/TrueSpeed</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>-2147483648</min>
+        <max>2147483647</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/Motor/AdaptiveSpeedPB</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/Motor/AdaptiveSpeedPB?boolean</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/Motor/AdaptiveSpeedPB?boolean</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/Motor/AdaptiveSpeedPB</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>1</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+    <tag>
+        <name>Codesys_HMI/Application/GVL/HMI/Motor/AdaptiveSpeedLPClr</name>
+        <resourceLocator>prot1://0?M?Application/GVL/HMI/Motor/AdaptiveSpeedLPClr?unsignedShort</resourceLocator>
+        <refreshTime>500</refreshTime>
+        <accessMode>READ-WRITE</accessMode>
+        <active>false</active>
+        <simulator>VRBL://Codesys_HMI/Application/GVL/HMI/Motor/AdaptiveSpeedLPClr?unsignedShort</simulator>
+        <enableScaling>false</enableScaling>
+        <TAGLOCATOR>CODESYS V3 ETH:prot1:uid0:Application/GVL/HMI/Motor/AdaptiveSpeedLPClr</TAGLOCATOR>
+        <enableAudit subT="1" eventT="18">false</enableAudit>
+        <min>0</min>
+        <max>65535</max>
+        <isMinMaxEdited>false</isMinMaxEdited>
+    </tag>
+</tags>

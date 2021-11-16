@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tag_dictionary>
+    <name>[CODESYS V3 ETH prot1] FirmacEIPtests.Device.Application</name>
+    <protocol>CDS3</protocol>
+    <tag_importer_version>CODESYS3 xml v1.0</tag_importer_version>
+    <importfile>C:/Users/chris.messruther/Desktop/FirmacEIP/FirmacEIPtests.Device.Application.xml</importfile>
+    <import_options importType="hierarchical" ver="1.0"/>
+    <tag_locator>
+        <locator>tagName</locator>
+    </tag_locator>
+    <hasDataModel>true</hasDataModel>
+</tag_dictionary>
