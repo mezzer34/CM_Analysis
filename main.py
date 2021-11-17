@@ -19,7 +19,7 @@ import emailfunc as em
 import structs as st       
     
     
-    
+
     
 def main():    
     
@@ -27,7 +27,7 @@ def main():
     l_ValidUserOptions = ["1", "2", "8", "9", "q"]
     
     l_MasterModel = st.Model()
-    
+        
     while True:
 
         
@@ -125,7 +125,7 @@ def doOperatingMode_CheckAgainstModel(_ComparrisonDataset: st.Model):
        
     plt.show()
     
-    input("PRess enter to continue")
+    input("Pess enter to continue")
 
 
 
@@ -139,7 +139,7 @@ def doOperatingMode_LearnDataset():
     
     #get new dataset name
     print("Motor name from file: " + l_NewModel.Name)
-    l_NewName = f.getUserInput("Enter new Motor Dataset name: " + l_NewModel.Name, _AllowBlank=True)
+    l_NewName = f.getUserInput("Enter new Motor Dataset name: ", _AllowBlank=True)
     
     if l_NewName != "":
         #set the name of the model

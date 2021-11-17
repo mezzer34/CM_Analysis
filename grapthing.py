@@ -4,6 +4,9 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
+
+import typing
+
 import structs as st
 import functions as f
 import dataprocessing as processing
@@ -33,13 +36,16 @@ def doPlotModel(_MasterModel: st.Model, _OtherModel: st.Model, _ChartType: st.Ch
     l_OtherList = doGenerateListOfDataFromModel(_Model=_OtherModel,
                                                 _IndexList=l_IndexList)
 
-    l_TimeSubet = doGetSubsetOfList_float(_DataList=_MasterModel.VibrationLog.Time, 
-                                          _IndexList=l_IndexList)
-
-    l_DataDict = dict[str, list[float]]()
-    l_MappingArray = list[list[str]]()
-
-    l_DataDict["Time"] = l_TimeSubet
+    
+    
+    l_FigureStructure = st.FigureStruct(_FigureName = "-", 
+                                        _PageTitle = "-")
+    
+    
+    l_FigureStructure.ChartData["Time (s)"] = doGetSubsetOfList_float(_DataList=_MasterModel.VibrationLog.Time, 
+                                                                        _IndexList=l_IndexList)
+    
+    
 
     # Check all lists to find the Y limits
     l_Master_YLim_Min = f.doFindMinInListOfLists(_ListOfDataset=l_MasterList)
@@ -56,6 +62,10 @@ def doPlotModel(_MasterModel: st.Model, _OtherModel: st.Model, _ChartType: st.Ch
     l_YLimits[1] = l_YLimits[1] + (l_YLimits[1] - l_YLimits[0]) * 0.1
     
     
+    l_FigureStructure.Chart1_Meta.YLims = l_YLimits
+    l_FigureStructure.Chart2_Meta.YLims = l_YLimits
+    l_FigureStructure.Diff_Meta.YLims = l_YLimits
+    
     
     l_DifferenceData = processing.doCompareTwoModels(_MasterModel=_MasterModel,
                                                     _OtherModel= _OtherModel)
@@ -70,223 +80,267 @@ def doPlotModel(_MasterModel: st.Model, _OtherModel: st.Model, _ChartType: st.Ch
     l_DifferenceData.ZAxis.RawDataDiff, l_DifferenceData.ZAxis.RawDataDiff_prnt = processing.doFindDifferencesBetweenRawData(_MasterList=l_MasterList[2],
                                                                                                                              _OtherList=l_OtherList[2])
     
-    
+    l_List = list[list[str]]()
     
     # choose which type of chart to create
     if _PlotData == st.PlotData.Master_Single_X:
-
-        l_MappingArray.append(["X Axis"])
-
-        l_StringTitle = "v RMS X"
-        l_DataDict[l_StringTitle] = l_MasterList[0]
-        l_MappingArray.append(["Time", l_StringTitle])
-
-
+        l_FigureStructure.FigureName = _MasterModel.Name + " - X Axis"
+        l_FigureStructure.PageTitle = _MasterModel.Name + " - X Axis"
+                
+        l_List = [["Vel RMS X"]]
+        
+        
+        l_FigureStructure.Chart1_Meta.ChartName = _MasterModel.Name
+        
+        l_FigureStructure.Chart1_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart1_Meta.YAxis_Label = "VIbration Vel (mm/s)"
+        
+        l_FigureStructure.Chart1_Meta.LineLabels = l_List[0]        
+        l_FigureStructure.ChartData[l_List[0][0]] = l_MasterList[0]
 
     elif _PlotData == st.PlotData.Master_Single_Y:
-
-        l_MappingArray.append(["Y Axis"])
-
-        l_StringTitle = "v RMS Y"
-        l_DataDict[l_StringTitle] = l_MasterList[1]
-        l_MappingArray.append(["Time", l_StringTitle])
-
-
+        l_FigureStructure.FigureName = _MasterModel.Name + " - Y Axis"
+        l_FigureStructure.PageTitle = _MasterModel.Name + " - Y Axis"
+                
+        l_List = [["Vel RMS Y"]]
+        
+        
+        l_FigureStructure.Chart1_Meta.ChartName = _MasterModel.Name
+        
+        l_FigureStructure.Chart1_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart1_Meta.YAxis_Label = "VIbration Vel (mm/s)"
+        
+        l_FigureStructure.Chart1_Meta.LineLabels = l_List[0]        
+        l_FigureStructure.ChartData[l_List[0][0]] = l_MasterList[1]
 
     elif _PlotData == st.PlotData.Master_Single_Z:
-
-        l_MappingArray.append(["Z Axis"])
-
-        l_StringTitle = "v RMS Z"
-        l_DataDict[l_StringTitle] = l_MasterList[2]
-        l_MappingArray.append(["Time", l_StringTitle])
-
-
+        l_FigureStructure.FigureName = _MasterModel.Name + " - Z Axis"
+        l_FigureStructure.PageTitle = _MasterModel.Name + " - Z Axis"
+        
+        l_List = [["Vel RMS Z"]]        
+        
+        
+        l_FigureStructure.Chart1_Meta.ChartName = _MasterModel.Name
+        
+        l_FigureStructure.Chart1_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart1_Meta.YAxis_Label = "VIbration Vel (mm/s)"
+        
+        l_FigureStructure.Chart1_Meta.LineLabels = l_List[0]        
+        l_FigureStructure.ChartData[l_List[0][0]] = l_MasterList[2]
 
     elif _PlotData == st.PlotData.Master_All:
-
-        l_MappingArray.append(["All Master"])
-
-        l_StringTitle = "v RMS X"
-        l_DataDict[l_StringTitle] = l_MasterList[0]
-        l_MappingArray.append(["Time", l_StringTitle])
-
-        l_StringTitle = "v RMS Y"
-        l_DataDict[l_StringTitle] = l_MasterList[1]
-        l_MappingArray.append(["Time", l_StringTitle])
-
-        l_StringTitle = "v RMS Z"
-        l_DataDict[l_StringTitle] = l_MasterList[2]
-        l_MappingArray.append(["Time", l_StringTitle])
-
+        l_FigureStructure.FigureName = _MasterModel.Name
+        l_FigureStructure.PageTitle = _MasterModel.Name
+        
+        l_List = [["Vel RMS X", "Vel RMS Y", "Vel RMS Z"]]     
+        
+        
+        l_FigureStructure.Chart1_Meta.ChartName = _MasterModel.Name
+        
+        l_FigureStructure.Chart1_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart1_Meta.YAxis_Label = "VIbration Vel (mm/s)"
+              
+        l_FigureStructure.Chart1_Meta.LineLabels = l_List[0]    
+        l_FigureStructure.ChartData[l_List[0][0]] = l_MasterList[0]
+      
+        l_FigureStructure.ChartData[l_List[0][1]] = l_MasterList[1]
+   
+        l_FigureStructure.ChartData[l_List[0][2]] = l_MasterList[2]
+    
 
 
     elif _PlotData == st.PlotData.MasterOther_Compare_X:
-
-        l_MappingArray.append(["X Axis Comparison"])
-
-        l_StringTitle = "v RMS A1 X"
-        l_DataDict[l_StringTitle] = l_MasterList[0]
-        l_MappingArray.append(["Time", l_StringTitle])
-
-        l_StringTitle = "v RMS A2 X"
-        l_DataDict[l_StringTitle] = l_OtherList[0]
-        l_MappingArray.append(["Time", l_StringTitle])
-
+        l_FigureStructure.FigureName = "Axis Comparison - " + _MasterModel.Name + " & " + _OtherModel.Name + " - X Axis"
+        l_FigureStructure.PageTitle = "Axis Comparison - " + _MasterModel.Name + " & " + _OtherModel.Name + " - X Axis"
+        
+        l_List = [["Vel RMS A1 X"], ["Vel RMS A2 X"]]        
+        
+        
+        l_FigureStructure.Chart1_Meta.ChartName = _MasterModel.Name
+        
+        l_FigureStructure.Chart1_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart1_Meta.YAxis_Label = "VIbration Vel (mm/s)"
+        
+        l_FigureStructure.Chart1_Meta.LineLabels = l_List[0]       
+        l_FigureStructure.ChartData[l_List[0][0]] = l_MasterList[0]
+        
+        
+        l_FigureStructure.Chart2_Meta.ChartName = _OtherModel.Name
+        
+        l_FigureStructure.Chart2_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart2_Meta.YAxis_Label = "VIbration Vel (mm/s)"
+        
+        l_FigureStructure.Chart2_Meta.LineLabels = l_List[1]       
+        l_FigureStructure.ChartData[l_List[1][0]] = l_OtherList[0]
+        
 
 
     elif _PlotData == st.PlotData.MasterOther_Compare_Y:
-
-        l_MappingArray.append(["Y Axis Comparison"])
-
-        l_StringTitle = "v RMS A1 Y"
-        l_DataDict[l_StringTitle] = l_MasterList[1]
-        l_MappingArray.append(["Time", l_StringTitle])
-
-        l_StringTitle = "v RMS A2 Y"
-        l_DataDict[l_StringTitle] = l_OtherList[1]
-        l_MappingArray.append(["Time", l_StringTitle])
-
+        l_FigureStructure.FigureName = "Axis Comparison - " + _MasterModel.Name + " & " + _OtherModel.Name + " - Y Axis"
+        l_FigureStructure.PageTitle = "Axis Comparison - " + _MasterModel.Name + " & " + _OtherModel.Name + " - Y Axis"
+                
+        l_List = [["Vel RMS A1 Y"], ["Vel RMS A2 Y"]]        
+        
+        
+        l_FigureStructure.Chart1_Meta.ChartName = _MasterModel.Name
+        
+        l_FigureStructure.Chart1_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart1_Meta.YAxis_Label = "VIbration Vel (mm/s)"
+               
+        l_FigureStructure.Chart1_Meta.LineLabels = l_List[0]       
+        l_FigureStructure.ChartData[l_List[0][1]] = l_MasterList[1]
+        
+        
+        l_FigureStructure.Chart2_Meta.ChartName = _OtherModel.Name
+        
+        l_FigureStructure.Chart2_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart2_Meta.YAxis_Label = "VIbration Vel (mm/s)"
+        
+        l_FigureStructure.Chart2_Meta.LineLabels = l_List[1]       
+        l_FigureStructure.ChartData[l_List[1][1]] = l_OtherList[1]
+        
 
 
     elif _PlotData == st.PlotData.MasterOther_Compare_Z:
-
-        l_MappingArray.append(["Z Axis Comparison"])
-
-        l_StringTitle = "v RMS A1 Z"
-        l_DataDict[l_StringTitle] = l_MasterList[2]
-        l_MappingArray.append(["Time", l_StringTitle])
-
-        l_StringTitle = "v RMS A2 Z"
-        l_DataDict[l_StringTitle] = l_OtherList[2]
-        l_MappingArray.append(["Time", l_StringTitle])
+        l_FigureStructure.FigureName = "Axis Comparison - " + _MasterModel.Name + " & " + _OtherModel.Name + " - Z Axis"
+        l_FigureStructure.PageTitle = "Axis Comparison - " + _MasterModel.Name + " & " + _OtherModel.Name + " - Z Axis"
+                
+        l_List = [["Vel RMS A1 Z"], ["Vel RMS A2 Z"]]           
+        
+        
+        l_FigureStructure.Chart1_Meta.ChartName = _MasterModel.Name
+        
+        l_FigureStructure.Chart1_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart1_Meta.YAxis_Label = "VIbration Vel (mm/s)"
+            
+        l_FigureStructure.Chart1_Meta.LineLabels = l_List[0]       
+        l_FigureStructure.ChartData[l_List[0][2]] = l_MasterList[2]
+        
+        
+        l_FigureStructure.Chart2_Meta.ChartName = _OtherModel.Name
+        
+        l_FigureStructure.Chart2_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart2_Meta.YAxis_Label = "VIbration Vel (mm/s)"
+        
+        l_FigureStructure.Chart2_Meta.LineLabels = l_List[1]       
+        l_FigureStructure.ChartData[l_List[1][2]] = l_OtherList[2]
 
 
 
     elif _PlotData == st.PlotData.MasterOther_Compare_All:
+        l_FigureStructure.FigureName = "Axis Comparison - " + _MasterModel.Name + " & " + _OtherModel.Name
+        l_FigureStructure.PageTitle = "Axis Comparison - " + _MasterModel.Name + " & " + _OtherModel.Name
+        
+        
+        l_List = [["Vel RMS A1 X", "Vel RMS A1 Y", "Vel RMS A1 Z"], 
+                  ["Vel RMS A2 X", "Vel RMS A2 Y", "Vel RMS A2 Z"]]
+                                     
+        
+        l_FigureStructure.Chart1_Meta.ChartName = _MasterModel.Name
+        
+        l_FigureStructure.Chart1_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart1_Meta.YAxis_Label = "VIbration Vel (mm/s)"
+        
+        l_FigureStructure.Chart1_Meta.LineLabels = l_List[0]    
+        l_FigureStructure.ChartData[l_List[0][0]] = l_MasterList[0]
+      
+        l_FigureStructure.ChartData[l_List[0][1]] = l_MasterList[1]
+   
+        l_FigureStructure.ChartData[l_List[0][2]] = l_MasterList[2]
+        
+        
+        l_FigureStructure.Chart2_Meta.ChartName = _OtherModel.Name    
+        
+        l_FigureStructure.Chart2_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart2_Meta.YAxis_Label = "VIbration Vel (mm/s)"
 
-        l_MappingArray.append(["All Master Comparison"])
-
-        l_MappingArray.append([_MasterModel.Name])
-
-        l_StringTitle = "v RMS A1 X"
-        l_DataDict[l_StringTitle] = l_MasterList[0]
-        l_MappingArray[1].extend(["Time", l_StringTitle])
-
-        l_StringTitle = "v RMS A1 Y"
-        l_DataDict[l_StringTitle] = l_MasterList[1]
-        l_MappingArray[1].extend([l_StringTitle])
-
-        l_StringTitle = "v RMS A1 Z"
-        l_DataDict[l_StringTitle] = l_MasterList[2]
-        l_MappingArray[1].extend([l_StringTitle])
-
-        l_MappingArray.append([_OtherModel.Name])
-
-        l_StringTitle = "v RMS A2 Y"
-        l_DataDict[l_StringTitle] = l_OtherList[1]
-        l_MappingArray[2].extend([l_StringTitle])
-
-        l_StringTitle = "v RMS A2 X"
-        l_DataDict[l_StringTitle] = l_OtherList[0]
-        l_MappingArray[2].extend(["Time", l_StringTitle])
-
-        l_StringTitle = "v RMS A2 Z"
-        l_DataDict[l_StringTitle] = l_OtherList[2]
-        l_MappingArray[2].extend([l_StringTitle])
-
-
+        l_FigureStructure.Chart2_Meta.LineLabels = l_List[1]    
+        l_FigureStructure.ChartData[l_List[1][0]] = l_OtherList[0]
+      
+        l_FigureStructure.ChartData[l_List[1][1]] = l_OtherList[1]
+   
+        l_FigureStructure.ChartData[l_List[1][2]] = l_OtherList[2]
+        
+        
+        
 
     elif _PlotData == st.PlotData.MasterOther_Compare_All_WithDiff:
-
-        l_MappingArray.append(["All Master Comparison"])
-
-        l_MappingArray.append([_MasterModel.Name])
+        l_FigureStructure.FigureName = "Axis Comparison - " + _MasterModel.Name + " & " + _OtherModel.Name
+        l_FigureStructure.PageTitle = "Axis Comparison - " + _MasterModel.Name + " & " + _OtherModel.Name
         
         
-        l_ListForTable = list[list[list[str]]]()
+        
+        l_List = [["Vel RMS A1 X", "Vel RMS A1 Y", "Vel RMS A1 Z"], 
+                  ["Vel RMS A2 X", "Vel RMS A2 Y", "Vel RMS A2 Z"],
+                  ["Vel RMS X - Diff", "Vel RMS Y - Diff", "Vel RMS Z - Diff"]]
+               
+        
+        l_FigureStructure.Chart1_Meta.ChartName = _MasterModel.Name
+        
+        l_FigureStructure.Chart1_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart1_Meta.YAxis_Label = "VIbration Vel (mm/s)"
+                           
+        l_FigureStructure.Chart1_Meta.LineLabels = l_List[0]    
+        l_FigureStructure.ChartData[l_List[0][0]] = l_MasterList[0]
+      
+        l_FigureStructure.ChartData[l_List[0][1]] = l_MasterList[1]
+   
+        l_FigureStructure.ChartData[l_List[0][2]] = l_MasterList[2]
+
+        l_FigureStructure.Chart1_Meta.Table = doGenerateListForTable_Model(_Model = _MasterModel)
         
         
-       
-        l_ListForTable.append(doGenerateListForTable_Model(_Model = _MasterModel))
-        l_ListForTable.append(doGenerateListForTable_Model(_Model = _OtherModel))
+        l_FigureStructure.Chart2_Meta.ChartName = _OtherModel.Name   
         
-        l_ListForTable.append(doGenerateListForTable_Diff(_Diff = l_DifferenceData))
+        l_FigureStructure.Chart2_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Chart2_Meta.YAxis_Label = "VIbration Vel (mm/s)" 
+        
+        l_FigureStructure.Chart2_Meta.LineLabels = l_List[1]    
+        l_FigureStructure.ChartData[l_List[1][0]] = l_OtherList[0]
+      
+        l_FigureStructure.ChartData[l_List[1][1]] = l_OtherList[1]
+   
+        l_FigureStructure.ChartData[l_List[1][2]] = l_OtherList[2]
+
+        l_FigureStructure.Chart2_Meta.Table = doGenerateListForTable_Model(_Model = _OtherModel)
         
         
-                
-        l_StringTitle = "v RMS A1 X"
-        l_DataDict[l_StringTitle] = l_MasterList[0]
-        l_MappingArray[1].extend(["Time", l_StringTitle])
+        
+        l_FigureStructure.Diff_Meta.ChartName = "Abs Difference"  
+        
+        l_FigureStructure.Diff_Meta.XAxis_Label = "Time (s)"
+        l_FigureStructure.Diff_Meta.YAxis_Label = "VIbration Vel (mm/s)"
+        
+        l_FigureStructure.Diff_Meta.LineLabels = l_List[2]    
+        l_FigureStructure.ChartData[l_List[2][0]] = l_DifferenceData.XAxis.RawDataDiff
+      
+        l_FigureStructure.ChartData[l_List[2][1]] = l_DifferenceData.YAxis.RawDataDiff
+   
+        l_FigureStructure.ChartData[l_List[2][2]] = l_DifferenceData.ZAxis.RawDataDiff
 
-        l_StringTitle = "v RMS A1 Y"
-        l_DataDict[l_StringTitle] = l_MasterList[1]
-        l_MappingArray[1].extend([l_StringTitle])
-
-        l_StringTitle = "v RMS A1 Z"
-        l_DataDict[l_StringTitle] = l_MasterList[2]
-        l_MappingArray[1].extend([l_StringTitle])
-
-        l_MappingArray.append([_OtherModel.Name])
-
-        l_StringTitle = "v RMS A2 X"
-        l_DataDict[l_StringTitle] = l_OtherList[0]
-        l_MappingArray[2].extend(["Time", l_StringTitle])
-
-        l_StringTitle = "v RMS A2 Y"
-        l_DataDict[l_StringTitle] = l_OtherList[1]
-        l_MappingArray[2].extend([l_StringTitle])
-
-        l_StringTitle = "v RMS A2 Z"
-        l_DataDict[l_StringTitle] = l_OtherList[2]
-        l_MappingArray[2].extend([l_StringTitle])
-
-        l_MappingArray.append(["Differential Examination"])
-
-        l_StringTitle = "v RMS X - Diff"
-        l_DataDict[l_StringTitle] = l_DifferenceData.XAxis.RawDataDiff
-        l_MappingArray[3].extend(["Time", l_StringTitle])
-
-        l_StringTitle = "v RMS Y - Diff"
-        l_DataDict[l_StringTitle] = l_DifferenceData.YAxis.RawDataDiff
-        l_MappingArray[3].extend([l_StringTitle])
-
-        l_StringTitle = "v RMS Z - Diff"
-        l_DataDict[l_StringTitle] = l_DifferenceData.ZAxis.RawDataDiff
-        l_MappingArray[3].extend([l_StringTitle])
-
-
-
+        l_FigureStructure.Diff_Meta.Table = doGenerateListForTable_Diff(_Diff = l_DifferenceData)
+        
+        
     else:
         print("Error - Plot Data Type not recognised")
 
-    # generate a dataframe from the dictionary
-    l_Dataframe = pd.DataFrame(l_DataDict)
-    
-    
+
 
     # plot the dataframe
     if _ChartType == st.ChartType.Lineplot:
-        doLineplot_OfDataframe(_Dataframe=l_Dataframe,
-                               _MappingArray=l_MappingArray,
-                               _YLim=l_YLimits,
-                               _ListForTable=l_ListForTable)
+        doLineplot_OfDataframe(_FigureStrucutre = l_FigureStructure)
         
-        
-
-    elif _ChartType == st.ChartType.scatterplot:
-        doScatterplot_OfDataFrame(_Dataframe=l_Dataframe,
-                                  _MappingArray=l_MappingArray)
         
     
-    # generate a list to use for legend
+    """ # generate a list to use for legend
     l_LegendList = list[str]()
     for i in range(2, len(l_MappingArray[1])):
         l_LegendList.append(l_MappingArray[1][i])
 
+
     plt.legend(loc="upper right",
                labels=l_LegendList)
-    
+     """
     
 
 
@@ -347,13 +401,33 @@ def doGenerateListOfDataFromModel(_Model: st.Model, _IndexList: list[int]):
     return l_ModelDataList
 
 
-def doPrintMappingArray(_MappingArray: list[list[str]]):
+def doPrintFigureStruct(_FigureStruct: st.FigureStruct):
+    doPrintChartMetaData(_ChartStruct = _FigureStruct.Chart1_Meta)
+    doPrintChartMetaData(_ChartStruct = _FigureStruct.Chart2_Meta)
+    doPrintChartMetaData(_ChartStruct = _FigureStruct.Diff_Meta)
 
-    for i in range(0, len(_MappingArray)):
-        print(" | " + str(i) + ": " + str(_MappingArray[i]))
+    #print data dict
+    
+    return
 
-        for x in range(0, len(_MappingArray[i])):
-            print(" | -- " + str(x) + ": " + str(_MappingArray[i][x]))
+
+def doPrintChartMetaData(_ChartStruct: st.ChartMetaData):
+    #Print meta data
+    print("Chart Name: " + _ChartStruct.ChartName)
+    
+    print(" |       Y-Limits" + str(_ChartStruct.YLims))
+    
+    print(" |       X-Axis Label: " + _ChartStruct.YAxis_Label)
+    print(" |       Y-Axis Label: " + _ChartStruct.XAxis_Label)
+    
+    print(" |       Line Labels: " + str(_ChartStruct.LineLabels))
+    
+    print(" |       Table: " + str(_ChartStruct.Table))
+        
+    return
+
+
+
 
 
 def doGetYLimits(_DataList: list[float]):
@@ -371,6 +445,39 @@ def doExtendList(_Value: float, _FinalSize: int):
         l_ExtendedList.append(_Value)
 
     return l_ExtendedList
+    
+    
+    
+def doGenerateChartInfoAsList(_Title: str, _YAxis_Label: str, _Model: st.Model, _LineTitles: list[str]):
+    l_ChartInfoList = list[list[list[str]]]()
+    
+    l_ChartInfoList.append([[_Title]])
+    
+    l_ChartInfoList.append([[ _YAxis_Label ]])
+    l_ChartInfoList.append([_LineTitles])
+    
+    l_ChartInfoList.append(doGenerateListForTable_Model(_Model = _Model))
+        
+
+    return l_ChartInfoList
+
+    
+    
+def doGenerateChartDiffInfoAsList(_Title: str, _YAxis_Label: str, _ModelDiff: st.ModelDifference, _LineTitles: list[str]):
+    l_ChartInfoList = list[list[list[str]]]()
+    
+    l_ChartInfoList.append([[_Title]])
+    
+    l_ChartInfoList.append([[ _YAxis_Label ]])
+    l_ChartInfoList.append([_LineTitles])
+    
+    l_ChartInfoList.append(doGenerateListForTable_Diff(_Diff = _ModelDiff))
+        
+
+    return l_ChartInfoList
+
+
+
 
 
 def doGenerateListForTable_Model(_Model: st.Model):
@@ -450,62 +557,70 @@ def doGenerateListForTable_Diff(_Diff: st.ModelDifference):
 
 
 
-def doLineplot_OfDataframe(_Dataframe: pd.DataFrame, _MappingArray: list[list[str]], _YLim: list[float], _ListForTable: list[list[list[str]]]):
-
-    # Plot a chart for each top level dimension of the mapping list
-    fig, axes = plt.subplots(nrows=2, ncols=len(_MappingArray) - 1, figsize=(18, 9))
+def doLineplot_OfDataframe(_FigureStrucutre: st.FigureStruct):
     
-    fig.suptitle(_MappingArray[0][0])
+    #Check how many charts should be plotted
+    l_NumberOfCharts = 1
+    if _FigureStrucutre.Chart2_Meta.ChartName != "":
+        l_NumberOfCharts = 2
+        
+    if _FigureStrucutre.Diff_Meta.ChartName != "":
+        l_NumberOfCharts = l_NumberOfCharts + 1
+    
+    
+    #Generate a dataframe 
+    l_Dataframe = pd.DataFrame(_FigureStrucutre.ChartData)
+    
+    
+    doPrintFigureStruct(_FigureStruct = _FigureStrucutre)
+    
+    print(l_Dataframe)
+    
+    # Plot a chart for each top level dimension of the mapping list
+    fig, axes = plt.subplots(nrows=2, ncols=l_NumberOfCharts, figsize=(18, 9))
+    
+    fig.suptitle(_FigureStrucutre.PageTitle, fontsize=16)
+    
+    l_ChartMetaData = st.ChartMetaData()
+    for i in range(0, l_NumberOfCharts):
+        #get the chart to plot
+        if i == 0:
+            l_ChartMetaData = _FigureStrucutre.Chart1_Meta
+            
+        elif i == 1:
+            l_ChartMetaData = _FigureStrucutre.Chart2_Meta
+            
+        elif i == 2:
+            l_ChartMetaData = _FigureStrucutre.Diff_Meta
+            
+            
+        axes[0, i].set_title(l_ChartMetaData.ChartName)
 
-    doPrintMappingArray(_MappingArray=_MappingArray)
-
-    print(_Dataframe)
-
-    # set the title of each chart, and plot the data
-    for i in range(0, len(_MappingArray) - 1):
-        axes[0, i].set_title(_MappingArray[i + 1][0])
-
-        axes[0, i].set(ylim=(_YLim[0], _YLim[1]))
+        axes[0, i].set(ylim=l_ChartMetaData.YLims)
+        
+        axes[0, i].set(xlabel=l_ChartMetaData.XAxis_Label)
+        axes[0, i].set(ylabel=l_ChartMetaData.YAxis_Label)
+        
         
         axes[1, i].axis("off")
         
-        if i < len(_MappingArray) - 1:
-            
-            axes[1, i].axis("tight")
-            axes[1, i].axis("off")
-            
-            
-            axes[1, i].table(cellText=_ListForTable[i], 
-                             cellLoc = "center",
-                             loc="best",
-                             colLabels = ["-", "X", "Y", "Z"])
-                             
-             
+        
+        axes[1, i].axis("tight")
+        axes[1, i].axis("off")
+        
+        
+        axes[1, i].table(cellText=l_ChartMetaData.Table,
+                        cellLoc = "center",
+                        loc="best",
+                        colLabels = ["-", "X", "Y", "Z"])
+                        
+        
         
 
 
-        for n in range(2, len(_MappingArray[i + 1])):
-            sns.lineplot(ax=axes[0, i], x="Time", y=_MappingArray[i + 1][n], data=_Dataframe)
+        for n in range(0, len(l_ChartMetaData.LineLabels)):
+            sns.lineplot(ax=axes[0, i], x = "Time (s)", y = l_ChartMetaData.LineLabels[n], data=l_Dataframe)
             
     
+        
     
-    
-    
-    
-
-def doScatterplot_OfDataFrame(_Dataframe: pd.DataFrame, _MappingArray: list[list[str]]):
-
-    # Plot a chart for each top level dimension of the mapping list
-    fig, axes = plt.subplots(nrows=1, ncols=len(_MappingArray) - 1)
-
-    fig.suptitle(_MappingArray[0][0])
-
-    # set the title of each chart, and plot the data
-    for i in range(0, len(_MappingArray) - 1):
-        axes[i].set_title(_MappingArray[i + 1][0])
-
-        for n in range(2, len(_MappingArray[i])):
-            sns.scatterplot(ax=axes[i], x="Time",
-                            y=_MappingArray[i + 1][n], data=_Dataframe)
-
-

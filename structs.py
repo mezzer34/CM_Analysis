@@ -1,7 +1,9 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
+from grpc.framework.common import style
 
-@dataclass
+
+@dataclass(order=True)
 class VibrationAxis:
     AxisName: str
 
@@ -23,7 +25,7 @@ class VibrationAxis:
 
    
 
-@dataclass
+@dataclass(order=True)
 class VibrationData:
     Time: list[float]
     XAxis: VibrationAxis
@@ -39,7 +41,7 @@ class VibrationData:
   
 
 
-@dataclass
+@dataclass(order=True)
 class Model:
     Name: str
     OriginDate: str
@@ -56,7 +58,7 @@ class Model:
 
 
 
-@dataclass
+@dataclass(order=True)
 class AxisDifference:
     MinDiff: float
     MaxDiff: float
@@ -86,7 +88,7 @@ class AxisDifference:
         self.RawDataDiff_prnt = []
 
 
-@dataclass
+@dataclass(order=True)
 class ModelDifference:
     MasterName: str
     OtherName: str
@@ -104,6 +106,60 @@ class ModelDifference:
         self.YAxis = AxisDifference()
         self.ZAxis = AxisDifference()
 
+
+
+@dataclass(order=True)
+class ChartMetaData:
+    ChartName: str
+    
+    YLims: list[float]
+    
+    YAxis_Label: str
+    XAxis_Label: str
+    
+    LineLabels: list[str]
+    
+    Table: list[list[str]]
+    
+    
+    def __init__(self):
+        self.ChartName = "NOT SET"
+        
+        self.YLims = []
+        
+        self.YAxis_Label = "NOT SET"
+        self.XAxis_Label = "NOT SET"
+        
+        self.LineLabels = []
+        
+        self.Table = []
+    
+
+
+
+@dataclass(order=True)
+class FigureStruct:
+    FigureName: str
+    PageTitle: str
+    
+    Chart1_Meta: ChartMetaData
+    Chart2_Meta: ChartMetaData
+    
+    Diff_Meta:   ChartMetaData
+        
+    ChartData: dict[str, list[float]]
+    
+    def __init__(self, _FigureName: str, _PageTitle: str):
+        self.FigureName = "NOT SET"
+
+        self.PageTitle = "NOT SET"
+
+        self.Chart1_Meta = ChartMetaData()
+        self.Chart2_Meta = ChartMetaData()
+        
+        self.Diff_Meta = ChartMetaData()
+        
+        self.ChartData = {} # dict[str, list[float]]
 
 
 
