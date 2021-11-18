@@ -8,7 +8,7 @@ __pycache__/
 
 
 # USer files
-.csv
+*.csv
 email.txt
 
 
