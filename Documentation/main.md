@@ -1,11 +1,20 @@
 <h1>Firmac Conditional Monitoring - File Processing</h1>
 
-<h2>.csv file processing</h2>
-<h3>V0.0.1.100</h3>
+<subtitle>V0.0.1.100</subtitle>
 
 
-<h3>Introduction</h3>
+<h2>------------------------------------------------------------------------</h2>
+<h2>Software</h2>
+<p>Python project is writen for v3.9 or newer. Compiled by basic python interpreter</p>
+<p>Codesys project written in CODESYS V3.5 SP14 - https://www.codesys.com/news-events/news/article/release-codesys-version-35-sp14.html</p>
+<p>HMI file created in JMobile V4.0.1 from EXOR (Paid licence only) - https://www.exorint.com/en/software/jmobile/</p>
+
+<h2>------------------------------------------------------------------------</h2>
+<h2>Introduction</h2>
 <p>Python program to process a .csv file containing the data from the Firmac Conditional Monitoring. The data is stored in a .csv file with the following format:</p>
+
+
+<h2>------------------------------------------------------------------------</h2>
 
 
 ## TODO - Main items

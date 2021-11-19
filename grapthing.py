@@ -330,18 +330,7 @@ def doPlotModel(_MasterModel: st.Model, _OtherModel: st.Model, _ChartType: st.Ch
     if _ChartType == st.ChartType.Lineplot:
         doLineplot_OfDataframe(_FigureStrucutre = l_FigureStructure)
         
-        
-    
-    """ # generate a list to use for legend
-    l_LegendList = list[str]()
-    for i in range(2, len(l_MappingArray[1])):
-        l_LegendList.append(l_MappingArray[1][i])
 
-
-    plt.legend(loc="upper right",
-               labels=l_LegendList)
-     """
-    
 
 
 def doGenerateIndexListToSelectFrom(_ListSize: int, _SubsetSize: int):
@@ -413,16 +402,23 @@ def doPrintFigureStruct(_FigureStruct: st.FigureStruct):
 
 def doPrintChartMetaData(_ChartStruct: st.ChartMetaData):
     #Print meta data
+    print()
     print("Chart Name: " + _ChartStruct.ChartName)
     
-    print(" |       Y-Limits" + str(_ChartStruct.YLims))
+    print(" |-----  Y-Limits        " + str(_ChartStruct.YLims))
     
-    print(" |       X-Axis Label: " + _ChartStruct.YAxis_Label)
-    print(" |       Y-Axis Label: " + _ChartStruct.XAxis_Label)
+    print(" |-----  X-Axis Label:   " + _ChartStruct.YAxis_Label)
+    print(" |-----  Y-Axis Label:   " + _ChartStruct.XAxis_Label)
     
-    print(" |       Line Labels: " + str(_ChartStruct.LineLabels))
+    print(" |-----  Line Labels:    " + str(_ChartStruct.LineLabels))
     
-    print(" |       Table: " + str(_ChartStruct.Table))
+    print(" |---------Table")
+        
+    for i, item in enumerate(_ChartStruct.Table):
+        print(f" |---------| Table Line {i} --: " + str(item))
+    
+       
+    print("\n")
         
     return
 
