@@ -1,11 +1,8 @@
 import matplotlib.pyplot as plt
-from matplotlib.transforms import Bbox
 import numpy as np
 import pandas as pd
 import seaborn as sns
 
-
-import typing
 
 import structs as st
 import functions as f
@@ -437,7 +434,8 @@ def doGetYLimits(_DataList: list[float]):
 def doExtendList(_Value: float, _FinalSize: int):
     l_ExtendedList = list[float]()
 
-    for i in range(0, _FinalSize):
+    #loop for size of list
+    while len(l_ExtendedList) < _FinalSize:
         l_ExtendedList.append(_Value)
 
     return l_ExtendedList
@@ -477,8 +475,7 @@ def doGenerateChartDiffInfoAsList(_Title: str, _YAxis_Label: str, _ModelDiff: st
 
 
 def doGenerateListForTable_Model(_Model: st.Model):
-     #Generate a list of all required information
-    l_ListLine = list[str]()
+    #Generate a list of all required information
     l_IndividualTable = list[list[str]]()
     
     l_ListLine = ["Max",
@@ -512,8 +509,7 @@ def doGenerateListForTable_Model(_Model: st.Model):
 
 
 def doGenerateListForTable_Diff(_Diff: st.ModelDifference):
-     #Generate a list of all required information
-    l_ListLine = list[str]()
+    #Generate a list of all required information
     l_IndividualTable = list[list[str]]()
     
     
