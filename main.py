@@ -303,12 +303,13 @@ def doPrintUserModeOptions():
     print("Select operating mode")
     print("1 - Load existing model")
     print("2 - Load data from file and check against model")
+    print("8 - Download emails")
     print("9 - Load data from file to learn model")
     print("q - Quit")
     print("")
 
 
-
+9
 
 
 def doFindAmountOfTimeVibrationWasAboveLimits(_MasterModel: st.Model, _OtherModel: st.Model):
